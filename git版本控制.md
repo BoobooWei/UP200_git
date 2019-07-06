@@ -1,6 +1,6 @@
-# git版本控制#
+# git版本控制
 
-### 1.版本控制的历史及作用###
+### 1.版本控制的历史及作用
 
 **版本控制的作用：**
 
@@ -38,7 +38,7 @@ git version 1.8.3.1
 
 ```shell
 [root@servera ~]# cp /usr/share/doc/git-1.8.3.1/contrib/completion/git-completion.bash /etc/bash_completion.d
-[root@servera ~]# source /etc/bash_completion.d/git-completion.bash 
+[root@servera ~]# source /etc/bash_completion.d/git-completion.bash
 ```
 
 ## 3.GIT的初始化##
@@ -69,10 +69,10 @@ Initialized empty Git repository in /root/workspace/.git/
 1）先在工作区生成一个文件
 
 ```shell
-[root@servera workspace]# echo hello > welcome.txt 
+[root@servera workspace]# echo hello > welcome.txt
 [root@servera workspace]# ls
 welcome.txt
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 ```
 
@@ -105,10 +105,10 @@ hello
 1）git diff：用来显示工作区和暂存区文件的差异
 
 ```shell
-[root@servera workspace]# echo test  >> welcome.txt 
+[root@servera workspace]# echo test  >> welcome.txt
 [root@servera workspace]# ls
 welcome.txt
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 test
 [root@servera workspace]# ls
@@ -135,7 +135,7 @@ index ce01362..b2b9cc9 100644
 #	modified:   welcome.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
-[root@servera workspace]# 
+[root@servera workspace]#
 ```
 
 3）git log： 用来查看历史提交的日志
@@ -154,30 +154,30 @@ Date:   Sun Nov 20 07:01:51 2016 -0500
 恢复工作区的文件到上一个提交的版本：
 
 ```shell
-[root@servera workspace]# echo test >> welcome.txt 
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# echo test >> welcome.txt
+[root@servera workspace]# cat welcome.txt
 hello
 test
 [root@servera workspace]# git add welcome.txt
 [root@servera workspace]# git commit -m "second"  # 以上的操作为再添加一个版本
 [master 0d10fd9] second
  1 file changed, 1 insertion(+)
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 test
 [root@servera workspace]# git reset --hard HEAD^   # ^代表上一个版本，^^代表上上一个版本，当然往上100个版本写100个^比较容易数不过来，所以可以写成HEAD~100
 HEAD is now at a7a7786 first
 [root@servera workspace]# ls
 welcome.txt
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 ```
 
 恢复工作区到指定版本：
 
 ```shell
-[root@servera workspace]# echo testok >> welcome.txt 
-[root@servera workspace]# echo testok >> welcome.txt 
+[root@servera workspace]# echo testok >> welcome.txt
+[root@servera workspace]# echo testok >> welcome.txt
 [root@servera workspace]# git add welcome.txt
 [root@servera workspace]# git commit -m "third"  # 这里再添加一个版本
 [master 3c3b1d9] third
@@ -189,7 +189,7 @@ hello
 HEAD is now at a7a7786 first
 [root@servera workspace]# ls
 welcome.txt
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 ```
 
@@ -204,13 +204,13 @@ a7a7786 HEAD@{2}: reset: moving to HEAD^
 a7a7786 HEAD@{4}: reset: moving to HEAD^
 4d65b14 HEAD@{5}: commit: second
 a7a7786 HEAD@{6}: commit (initial): first
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 [root@servera workspace]# git reset --hard HEAD@{1}
 HEAD is now at 3c3b1d9 third
 [root@servera workspace]# ls
 welcome.txt
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 testok
 testok
@@ -219,9 +219,9 @@ testok
 6）git checkout 可以丢弃工作区的修改
 
 ```shell
-[root@servera workspace]# echo carol >> welcome.txt 
+[root@servera workspace]# echo carol >> welcome.txt
 [root@servera workspace]# git add welcome.txt
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 testok
 testok
@@ -230,7 +230,7 @@ carol #重新提交一个修改后的文件至工作区
 Unstaged changes after reset:
 M	welcome.txt
 [root@servera workspace]# git checkout -- welcome.txt
-[root@servera workspace]# cat welcome.txt 
+[root@servera workspace]# cat welcome.txt
 hello
 testok
 testok
@@ -259,7 +259,7 @@ rm 'welcome.txt'
 | git branch | git branch name | git checkout name | git merge name | git branch -d name |
 
 ```shell
-[root@servera workspace]# git branch  # 查看fenzhi 
+[root@servera workspace]# git branch  # 查看fenzhi
 * master
 [root@servera workspace]# git branch a #创建名为a的分支
 [root@servera workspace]# git branch
@@ -267,7 +267,7 @@ rm 'welcome.txt'
 * master   # * 代表当前分支
 [root@servera workspace]# git checkout a  # 切换分支
 Switched to branch 'a'
-[root@servera workspace]# git branch 
+[root@servera workspace]# git branch
 * a
   master
 [root@servera workspace]# echo test > testfile
@@ -285,7 +285,7 @@ nothing to commit, working directory clean
 [root@servera .git]# ls
 branches        config       HEAD   index  logs     ORIG_HEAD
 COMMIT_EDITMSG  description  hooks  info   objects  refs
-[root@servera .git]# cat HEAD 
+[root@servera .git]# cat HEAD
 ref: refs/heads/a   # 可以看到当前分支头部指向了a
 
 [root@servera workspace]# git checkout master
@@ -342,13 +342,13 @@ remote: error: By default, updating the current branch in a non-bare repository
 remote: error: is denied, because it will make the index and work tree inconsistent
 remote: error: with what you pushed, and will require 'git reset --hard' to match
 remote: error: the work tree to HEAD.
-remote: error: 
+remote: error:
 remote: error: You can set 'receive.denyCurrentBranch' configuration variable t
 remote: error: 'ignore' or 'warn' in the remote repository to allow pushing int
 remote: error: its current branch; however, this is not recommended unless you
 remote: error: arranged to update its work tree to match what you pushed in som
 remote: error: other way.
-remote: error: 
+remote: error:
 remote: error: To squelch this message and still keep the default behaviour, se
 remote: error: 'receive.denyCurrentBranch' configuration variable to 'refuse'.
 To /backup
@@ -454,7 +454,7 @@ test1
 [root@foundation0 test]# cd test1/
 [root@foundation0 test1]# ls
 hello  testfile  zazazazazazaza
-[root@foundation0 test1]# 
+[root@foundation0 test1]#
 
 ```
 
@@ -481,7 +481,7 @@ See 'git help config' and search for 'push.default' for further information.
 'current' instead of 'simple' if you sometimes use older versions of Git)
 
 Username for 'https://github.com': atheling004
-Password for 'https://atheling004@github.com': 
+Password for 'https://atheling004@github.com':
 Counting objects: 4, done.
 Delta compression using up to 2 threads.
 Compressing objects: 100% (2/2), done.
